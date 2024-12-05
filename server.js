@@ -3,6 +3,7 @@ const db = new sqlite3.Database('scientific_database.db');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const port = process.env.PORT || 3000
 
 const app = express();
 //get the parent fields (fields with no parent)
@@ -119,8 +120,8 @@ app.post('/refresh', async (req, res) => {
 
 
 
-app.listen(3000, () => {
-    console.log("LISTENING ON PORT 3000")
+app.listen(port, () => {
+    console.log(`LISTENING ON PORT 3000 ${port}`)
 });
 
 //---------- testing output
