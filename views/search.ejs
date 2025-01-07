@@ -27,15 +27,29 @@
             <div class="col">
                 <h2>search querries</h2>
                 <ul id="search-terms" class="list-group">
+
+
                     <% for(const obj of fields){ %>
                         <li class="list-group-item">
                             <button name="entry-<%=obj.id%>" id="fieldId-<%= obj.id %>"
                                 class="selection-button "></button>
-                            <label for="fieldid-<%= obj.id %>">
+                            <label class="text-capitalize" for="fieldid-<%= obj.id %>">
                                 <%= obj.field_name %>
                             </label>
                         </li>
                         <% } %>
+                            <div class="input-group mt-3">
+                                <select class="form-select" id="yearSelect">
+                                    <option selected>From - To</option>
+                                    <option value="1">From Year</option>
+                                    <option value="2">To Year</option>
+                                    <option value="3">Exact Year</option>
+                                </select>
+                                <input type="text" aria-label="Year" class="form-control" placeholder="Year">
+                                <input type="text" aria-label="Year" class="form-control" id="yearFilter"
+                                    placeholder="Year">
+                            </div>
+                            <button class="btn btn-secondary btn-sm mb-3" id="yearFilterButton">Apply</button>
                 </ul>
             </div>
             <div class="col-9 border border-dark-subtle rounded bg-dark-subtle" id="articles-section">

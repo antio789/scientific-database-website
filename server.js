@@ -38,7 +38,7 @@ function getArticles(...ids) {
     const idArray = ids;
     return new Promise(function (resolve, reject) {
         db.serialize(() => {
-            db.all(`SELECT id,title,abstract,doi from Articles where id in (SELECT article_content.article_id from article_content where tech_id in (${idArray}) group by article_id having count(distinct tech_id) = ${idArray.length});`,
+            db.all(`SELECT id,title,abstract,doi,publication_year from Articles where id in (SELECT article_content.article_id from article_content where tech_id in (${idArray}) group by article_id having count(distinct tech_id) = ${idArray.length});`,
                 (err, rows) => {
                     if (err) { return reject(err); }
                     resolve(rows);
@@ -120,7 +120,7 @@ app.post('/submit', async (req, res) => {
         //console.log(req);
         const Children = await getChild(parent);//array
         //console.log(art2);
-        console.log(Children);
+        //console.log(Children);
         res.json(JSON.stringify(Children));
     } catch (e) {
         console.log(e);
